@@ -1,5 +1,14 @@
 // Web: the Go core compiled to WebAssembly (public/quickpay.wasm + wasm_exec.js).
 import type { Core, Doc, Parsed } from './types';
+import { setZXingModuleOverrides } from 'barcode-detector/ponyfill';
+
+// Browsers without a built-in BarcodeDetector (Chrome/Edge on Windows, Firefox) make expo-camera
+// fall back to the zxing-wasm decoder, which by default downloads its .wasm from a public CDN.
+// Serve our own copy (public/zxing_reader.wasm, copied on npm install) so no third-party code
+// runs on this origin and the Content-Security-Policy in public/_headers can stay 'self'.
+setZXingModuleOverrides({
+  locateFile: (file: string, prefix: string) => (file.endsWith('.wasm') ? '/zxing_reader.wasm' : prefix + file),
+});
 
 type R = { ok: boolean; value?: string; error?: string };
 declare const Go: new () => { importObject: WebAssembly.Imports; run(i: WebAssembly.Instance): Promise<void> };
