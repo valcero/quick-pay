@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "QuickPay QR",
+    "slug": "quickpay-qr",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "quickpayqr",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.quickpayqr",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.example.quickpayqr",
+      "adaptiveIcon": {
+        "backgroundColor": "#7C5CFF",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "allowBackup": false,
+      "permissions": ["android.permission.CAMERA", "android.permission.USE_BIOMETRIC"],
+      "blockedPermissions": ["android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-sqlite",
+      ["expo-camera", { "cameraPermission": "QuickPay QR uses the camera only to scan your own payment QR. Nothing is recorded or uploaded.", "recordAudioAndroid": false }],
+      ["expo-local-authentication", { "faceIDPermission": "Use Face ID to protect your saved payment QR." }]
+    ]
+  }
+}
