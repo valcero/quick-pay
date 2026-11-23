@@ -18,7 +18,7 @@ To check the APK is genuine, compare its signing certificate with the fingerprin
 SHA-256: E0:A3:AA:AB:F2:5E:2C:39:B5:3F:36:1B:7B:79:EA:87:15:FF:A1:54:85:32:7C:DE:E4:2F:17:9A:C4:A4:38:8B
 ```
 
-**Web:** not hosted yet. Run it locally, as shown below.
+**Web:** https://quick-pay-v1.mohdhamzarehman.workers.dev (hosted on Cloudflare). Data stays in your browser on that device.
 
 ## Features
 
