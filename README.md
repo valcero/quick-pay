@@ -4,6 +4,22 @@ Save your "receive money" QR once. The app opens straight to it, full screen, wi
 
 Your payment details stay on your device. They are encrypted at rest with AES-256-GCM and never uploaded unless you turn on the optional sync, which only ever sends ciphertext.
 
+## Download
+
+**Android:** get the APK from the [latest release](https://github.com/valcero/quick-pay/releases/latest). It needs a 64-bit phone, which covers almost every Android phone from the last several years.
+
+1. Download the `.apk` on your phone and open it.
+2. Allow "install unknown apps" for your browser or file manager when asked.
+3. Google Play Protect may warn that the developer is unknown. That's expected for apps installed from outside the Play Store.
+
+To check the APK is genuine, compare its signing certificate with the fingerprint below. On a PC with the Android SDK, run `apksigner verify --print-certs QuickPay.apk`.
+
+```
+SHA-256: E0:A3:AA:AB:F2:5E:2C:39:B5:3F:36:1B:7B:79:EA:87:15:FF:A1:54:85:32:7C:DE:E4:2F:17:9A:C4:A4:38:8B
+```
+
+**Web:** not hosted yet. Run it locally, as shown below.
+
 ## Features
 
 - **Scan or paste** a UPI, merchant (EMV) or any other QR. The app checks it and warns about unrecognised formats.
