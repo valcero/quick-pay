@@ -46,6 +46,20 @@ export function SetupScreen({ core, doc, onSave, onCancel }: Props) {
     }
   };
 
+  // Paste: wait for typing to pause, then auto-continue only for formats we recognise.
+  // Unrecognised text needs an explicit "Use this text" so a half-typed link is never taken.
+  useEffect(() => {
+    if (mode !== 'paste' || parsed || !text.trim()) return;
+    const t = setTimeout(() => {
+      try {
+        if (core.parseQR(text).kind !== 'generic') accept(text);
+      } catch { /* keep typing; errors show only on explicit confirm */ }
+    }, 600);
+    return () => clearTimeout(t);
+    // accept is stable enough for this purpose; re-run only when the input changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, mode, parsed, core]);
+
   const save = () => {
     if (!parsed) return;
     try {
@@ -83,9 +97,12 @@ export function SetupScreen({ core, doc, onSave, onCancel }: Props) {
                 </View>
               )
             ) : (
-              <TextInput value={text} onChangeText={(t) => { setText(t); if (t.trim()) accept(t); }}
+              <TextInput value={text} onChangeText={(t) => { setText(t); setError(''); }}
                 placeholder="upi://pay?pa=you@bank&pn=Your Name" placeholderTextColor={colors.muted}
                 autoCapitalize="none" autoCorrect={false} multiline style={styles.input} />
+            )}
+            {mode === 'paste' && !!text.trim() && (
+              <Button title="Use this text" variant="ghost" onPress={() => accept(text)} />
             )}
           </>
         )}

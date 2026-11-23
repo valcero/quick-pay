@@ -1,0 +1,5 @@
+# Build output of scripts/build-mobile-core.sh. Regenerate instead of committing binaries.
+android/libs/
+# Gradle build output.
+android/build/
+android/.cxx/

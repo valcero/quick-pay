@@ -1,0 +1,21 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'com.quickpay'
+version = '1.0.0'
+
+android {
+  namespace "expo.modules.quickpaycore"
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+    consumerProguardFiles 'proguard-rules.pro'
+  }
+}
+
+dependencies {
+  // The Go core, built by scripts/build-mobile-core.sh (gomobile bind).
+  implementation files('libs/quickpaycore.aar')
+}

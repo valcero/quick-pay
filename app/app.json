@@ -32,6 +32,7 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      "./plugins/withReleaseSigning",
       "expo-secure-store",
       "expo-sqlite",
       ["expo-camera", { "cameraPermission": "QuickPay QR uses the camera only to scan your own payment QR. Nothing is recorded or uploaded.", "recordAudioAndroid": false }],
