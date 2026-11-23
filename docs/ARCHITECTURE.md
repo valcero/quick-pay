@@ -37,7 +37,7 @@ Both work. Expo wins here because the Go bridge cost is lower on web and the web
 
 `app/src/core/index.native.ts` expects a native module named `QuickPayCore` with the same function names and JSON contract as `core/bridge`.
 
-1. `sh scripts/build-mobile-core.sh` produces `quickpaycore.aar` and `Quickpaycore.xcframework` (Android needs SDK + NDK, iOS needs macOS).
+1. `sh scripts/build-mobile-core.sh` (Windows: `scripts/build-mobile-core.ps1`) produces `quickpaycore.aar` and `Quickpaycore.xcframework` (Android needs SDK + NDK, iOS needs macOS).
 2. `npx create-expo-module --local quickpay-core` under `app/modules/`, add the artifacts, and expose each `bridge` function as a synchronous `Function(...)` calling `Bridge.parseQR(...)` etc. (Kotlin: `quickpaycore.Bridge`, Swift: `QuickpaycoreBridge`).
 3. Build a dev client: `npx expo prebuild && npx expo run:android` (or `run:ios`). Expo Go cannot load custom native code.
 
