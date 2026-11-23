@@ -39,19 +39,6 @@ psql "$env:DATABASE_URL" -f migrations/001_sync_blobs.sql
 $env:DATABASE_URL="postgres://user:pass@localhost:5432/quickpay"; go run ./cmd/api
 ```
 
-## Ship it
-
-```powershell
-cd app
-npm i -g eas-cli; eas login; eas build:configure
-# Web: static export, host anywhere (Netlify, Cloudflare Pages, S3 + CDN)
-npx expo export --platform web            # output: app/dist
-# Stores (cloud builds; iOS builds do not need a local Mac)
-eas build --platform android --profile production   # .aab for Google Play
-eas build --platform ios --profile production       # .ipa for App Store
-eas submit --platform android; eas submit --platform ios
-```
-
 Before release, replace `com.example.quickpayqr` in `app/app.json`, link the Go native module (see `docs/ARCHITECTURE.md`, "Native bridge"), and confirm the app reports `engine: go-native` in Manage. A build running the TS fallback does not encrypt and must not be shipped.
 
 ## Status
